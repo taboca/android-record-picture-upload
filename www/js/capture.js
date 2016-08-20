@@ -54,10 +54,10 @@ function startUploadFile() {
  */
 var initUIEvents = function () {
   document.getElementById("startCapture").addEventListener("click", startCapture);
+  document.getElementById("startCaptureIntent").addEventListener("click", startCaptureIntent);
 };
 
 function startCapture() {
-
 
   var tapEnabled = true; //enable tap take picture
   var dragEnabled = true; //enable preview box drag across the screen
@@ -71,21 +71,21 @@ function startCapture() {
 
   cordova.plugins.camerapreview.takePicture({maxWidth:640, maxHeight:640});
 
-  /*
+}
 
+function startCaptureIntent() {
 
-  navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
-      destinationType: Camera.DestinationType.FILE_URI });
+    navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
+        destinationType: Camera.DestinationType.FILE_URI });
 
-  function onSuccess(imageURI) {
-      var image = document.getElementById('myImage');
-      image.src = imageURI;
-  }
+    function onSuccess(imageURI) {
+        var image = document.getElementById('myImage');
+        image.src = imageURI;
+    }
 
-  function onFail(message) {
-      alert('Failed because: ' + message);
-  }
-  */
+    function onFail(message) {
+        alert('Failed because: ' + message);
+    }
 
 }
 /**
