@@ -57,6 +57,23 @@ var initUIEvents = function () {
 };
 
 function startCapture() {
+
+
+  var tapEnabled = true; //enable tap take picture
+  var dragEnabled = true; //enable preview box drag across the screen
+  var toBack = true; //send preview box to the back of the webview
+  var rect = {x: 100, y: 100, width: 200, height:200};
+  cordova.plugins.camerapreview.startCamera(rect, "front", tapEnabled, dragEnabled, toBack);
+
+  cordova.plugins.camerapreview.setOnPictureTakenHandler(function(result){
+      document.getElementById('myImg').src = result[0];//originalPicturePath;
+  });
+
+  cordova.plugins.camerapreview.takePicture({maxWidth:640, maxHeight:640});
+
+  /*
+
+
   navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
       destinationType: Camera.DestinationType.FILE_URI });
 
@@ -68,6 +85,8 @@ function startCapture() {
   function onFail(message) {
       alert('Failed because: ' + message);
   }
+  */
+
 }
 /**
  * When cordova fires the deviceready event, we initialize everything needed for audio input.
